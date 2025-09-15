@@ -1,1 +1,67 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hilfspakete spenden</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; padding: 2rem; }
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; }
+    .btn { display: inline-block; padding: 0.75rem 1rem; border-radius: 10px;
+           text-decoration: none; border: 1px solid #111; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Spenden, die direkt ankommen</h1>
+    <p>Wähle ein Paket oder shoppe frei über die Wunschliste unserer Partner.</p>
+    <p style="font-size:0.9rem;opacity:.8">
+      Hinweis: Bei Käufen über diese Links erhalten wir eine Vergütung als Amazon-Partner.
+    </p>
+  </header>
+
+  <section class="grid" id="produkte">
+    <!-- Karten werden unten per JS aus Daten erzeugt -->
+  </section>
+
+  <script>
+    const AFF_TAG = "DEIN-TAG-21"; // TODO: ersetzen
+    const items = [
+      {
+        title: "Winterpaket",
+        desc: "Mütze, Handschuhe, Socken",
+        url: "https://www.amazon.de/dp/B00EXAMPLE"
+      },
+      {
+        title: "Hygienepaket",
+        desc: "Zahnbürste, Zahnpasta, Duschgel",
+        url: "https://www.amazon.de/dp/B00EXAMPLE2"
+      },
+      {
+        title: "Freies Shoppen (Wunschliste)",
+        desc: "Wähle frei, was gebraucht wird",
+        url: "https://www.amazon.de/hz/wishlist/ls/LISTENID"
+      }
+    ];
+
+    const grid = document.getElementById("produkte");
+    items.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.desc}</p>
+        <a class="btn"
+           href="${item.url}${item.url.includes('?') ? '&' : '?'}tag=${AFF_TAG}"
+           target="_blank"
+           rel="noopener sponsored nofollow">
+           Jetzt bei Amazon auswählen
+        </a>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
 
